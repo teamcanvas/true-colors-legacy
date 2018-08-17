@@ -17,14 +17,13 @@ before_install:
 install:
   - mkdir -p ~/esp
   - cd ~/esp
-  - wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-61-gab8375a-5.2.0.tar.gz
-  - tar -xzf xtensa-esp32-elf-linux64-1.22.0-61-gab8375a-5.2.0.tar.gz
+  - wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
+  - tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz
   - export PATH=$PATH:$HOME/esp/xtensa-esp32-elf/bin
   - git clone --recursive https://github.com/espressif/esp-idf.git
   - export IDF_PATH=~/esp/esp-idf
 
 script:
   - cd $PROJECT_PATH
-  - make defconfig
   - make all
   - curl -F "chat_id=$TELEGRAM_CHAT_ID" -F "caption=찍" -F "document=@./build/true-colors.bin" https://api.telegram.org/bot$TELEGRAM_BOT_API/senddocument
