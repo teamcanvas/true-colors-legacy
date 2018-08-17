@@ -13,6 +13,8 @@
 #include "i2c_api.h"
 #include "cm1106.h"
 
+#define TRUE_COLORS_TAG "TRUE COLORS"
+
 void app_main()
 {
 	i2c_api_master_init();
@@ -21,9 +23,9 @@ void app_main()
 		uint16_t value = 0;
 		err = cm1106_measure_result(&value);
 		if (err == ESP_OK) {
-			ESP_LOGI("CM1106 Value :%d\n", value);
+			ESP_LOGI(TRUE_COLORS_TAG, "CM1106 Value :%d\n", value);
 		} else {
-			ESP_LOGI("CM1106 measurement failed");
+			ESP_LOGI(TRUE_COLORS_TAG, "CM1106 measurement failed");
 		}
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
 	}
