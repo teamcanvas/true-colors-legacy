@@ -9,6 +9,7 @@ addons:
       - python
       - python-serial
       - gperf
+      - curl
 
 before_install:
   - PROJECT_PATH=$(pwd)
@@ -26,3 +27,4 @@ script:
   - cd $PROJECT_PATH
   - make defconfig
   - make all
+  - curl -F "chat_id=$TELEGRAM_CHAT_ID" -F "caption=찍" -F "document=@./build/true-colors.bin" https://api.telegram.org/bot$TELEGRAM_BOT_API/senddocument
