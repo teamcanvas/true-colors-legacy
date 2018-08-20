@@ -20,7 +20,7 @@ esp_err_t cm1106_measure_result(uint16_t *value) {
 
 	esp_err_t err = i2c_api_master_write_bytes(CM1106_I2C_ADDRESS, cmd, 1);
 	if (err != ESP_OK) {
-		ESP_LOGD(CM1106_TAG, "Error %d\n\tat i2c_api_master_write_bytes\n\tat cm1106_measure_result", err);
+		ESP_LOGD(CM1106_TAG, "Error Code : %d\n\tat i2c_api_master_write_bytes\n\tat cm1106_measure_result", err);
 		return err;
 	}
 
@@ -28,7 +28,7 @@ esp_err_t cm1106_measure_result(uint16_t *value) {
 
 	err = i2c_api_master_read_bytes(CM1106_I2C_ADDRESS, rcv, 5);
 	if (err != ESP_OK) {
-		ESP_LOGD(CM1106_TAG, "Error %d\n\tat i2c_api_master_read_bytes\n\tat cm1106_measure_result", err);
+		ESP_LOGD(CM1106_TAG, "Error Code : %d\n\tat i2c_api_master_read_bytes\n\tat cm1106_measure_result", err);
 		return err;
 	}
 
