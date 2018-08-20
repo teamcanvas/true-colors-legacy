@@ -24,11 +24,11 @@ install:
   - export IDF_PATH=~/esp/esp-idf
 
 after_failure:
-  - curl -F "chat_id=$TELEGRAM_CHAT_ID" -F "text=Build fail. Please check code." https://api.telegram.org/bot$TELEGRAM_BOT_API/sendmessage
+  - curl -F "chat_id=$TELEGRAM_CHAT_ID" -F "text='Build fail. Please check code.'" https://api.telegram.org/bot$TELEGRAM_BOT_API/sendmessage
 
 script:
   - cd $PROJECT_PATH
   - make all
 
-deploy:
+after_script:
   - curl -F "chat_id=$TELEGRAM_CHAT_ID" -F "caption=찍" -F "document=@./build/true-colors.bin" https://api.telegram.org/bot$TELEGRAM_BOT_API/senddocument
